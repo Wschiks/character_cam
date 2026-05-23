@@ -1,0 +1,64 @@
+ASCII Art Camera Project — Full Documentation
+What We're Building
+A web app (single index.html file) that converts images and video into colored ASCII art on a black background. No frameworks, no installs, pure HTML/CSS/JS. Works on iPhone Safari.
+
+Tech Stack
+
+Pure HTML + Canvas + JavaScript — no React, no Python, no dependencies
+Hosted on GitHub Pages (or Netlify/Vercel) for iPhone access via URL
+One single index.html file
+
+
+Project Phases
+Phase 1 — Static Image (current)
+
+Reads assets/test.png from the project folder
+Draws it on a hidden canvas
+Samples pixel colors at a grid
+Replaces each pixel block with a colored ASCII character
+Renders on black background
+
+Phase 2 — Image Upload
+
+Add a file picker button
+User picks any image from phone/computer
+Same ASCII rendering pipeline
+
+Phase 3 — Live Camera (the big one)
+
+Access device camera via getUserMedia()
+Stream frames through the ASCII pipeline in real time
+Works on iPhone Safari (front + back camera)
+Toggle button between front/back camera
+
+Nice to Have
+
+Adjustable density (how many characters fit)
+FPS counter
+Character set picker (letters vs symbols vs numbers)
+Screenshot/save button
+Fullscreen mode
+
+
+How ASCII Rendering Works
+
+Draw source image/frame onto a hidden <canvas>
+Call getImageData() to get raw pixel RGBA values
+Loop over pixels in a grid (e.g. every 8px)
+Map brightness of pixel → ASCII character (dark = . or ,, bright = @ or #)
+Set color: rgb(r,g,b) using the sampled pixel color
+Render characters in a <pre> or on a second canvas
+
+
+File Structure
+project/
+├── index.html       ← entire app lives here
+└── assets/
+    └── test.png     ← test image for Phase 1
+
+Deployment for iPhone
+
+Push to GitHub repo
+Settings → Pages → deploy from main branch
+Get URL like yourname.github.io/ascii-cam
+Open in iPhone Safari — done
